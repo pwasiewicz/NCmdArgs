@@ -1,5 +1,6 @@
 # NCmdArgs
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/pwasiewicz/Was.CommandLineArgs/master/LICENSE)
+
 Simple parser for application arguments. Port of Was.CommandLineArgs.
 
 ## Basic usage
