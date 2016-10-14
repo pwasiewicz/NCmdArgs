@@ -14,7 +14,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NCmdArgs", "src\NCmdArgs\NC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{647C9AAE-D317-4B3B-86D4-7DE75C5910AB}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NCmdArgs.Tests", "NCmdArgs.Tests\NCmdArgs.Tests.xproj", "{938DC9D5-2150-446F-BB31-77FD19C18231}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NCmdArgs.Tests", "tests\NCmdArgs.Tests\NCmdArgs.Tests.xproj", "{938DC9D5-2150-446F-BB31-77FD19C18231}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,7 +36,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F969DD63-A79D-4687-A692-2E65AD3331B6} = {4F6C9669-30DE-4AA6-B8A4-F8737C15C895}
-		{647C9AAE-D317-4B3B-86D4-7DE75C5910AB} = {4F6C9669-30DE-4AA6-B8A4-F8737C15C895}
 		{938DC9D5-2150-446F-BB31-77FD19C18231} = {647C9AAE-D317-4B3B-86D4-7DE75C5910AB}
 	EndGlobalSection
 EndGlobal
