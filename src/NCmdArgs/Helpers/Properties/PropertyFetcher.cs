@@ -43,5 +43,11 @@ namespace NCmdArgs.Helpers.Properties
 
         public PropertyInfo Property { get; }
         public T Attribute { get; }
+
+        public TAttr GetOtherAttribute<TAttr>()
+            where TAttr : Attribute
+        {
+            return this.Property.GetCustomAttribute<TAttr>();
+        }
     }
 }

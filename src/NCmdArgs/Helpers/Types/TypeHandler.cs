@@ -18,7 +18,7 @@ namespace NCmdArgs.Helpers.Types
         private readonly ParserConfiguration configuration;
 
         public ParserContext(
-                Queue<string> arguments, 
+                LinkedList<string> arguments, 
                 PropertyAttributeHolder<CommandArgumentAttribute> attributeHolder,
                 Func<string, bool> isSwitchChecker, ParserConfiguration configuration)
         {
@@ -29,7 +29,7 @@ namespace NCmdArgs.Helpers.Types
             this.configuration = configuration;
         }
 
-        public Queue<string> Arguments { get; } 
+        public LinkedList<string> Arguments { get; } 
         public PropertyAttributeHolder<CommandArgumentAttribute> AttributeHolder { get; }
 
         public TypeHandler GetHandlerFor(Type type)

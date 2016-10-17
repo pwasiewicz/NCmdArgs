@@ -85,7 +85,7 @@ namespace NCmdArgs
             if (options == null) throw new ArgumentNullException(nameof(options));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            var argsQueue = new Queue<string>(args);
+            var argsQueue = new LinkedList<string>(args);
 
             string verbPath = null;
             var newOptions = VerbsResolver.FetchVerbOptions(options, argsQueue, this.Configuration, ref verbPath);
@@ -124,7 +124,7 @@ namespace NCmdArgs
             helperWriter.Write(typeof (T), this.Configuration);
         }
 
-        internal bool ParseNoVerb(object options, Queue<string> args)
+        internal bool ParseNoVerb(object options, LinkedList<string> args)
         {
             try
             {
@@ -145,7 +145,7 @@ namespace NCmdArgs
             }
         }        
 
-        private void ParseNoVerbInternal(object options, Queue<string> args)
+        private void ParseNoVerbInternal(object options, LinkedList<string> args)
         {
             if (options == null) throw new ArgumentNullException(nameof(options));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -154,18 +154,40 @@ namespace NCmdArgs
 
             var usedProperties = new HashSet<PropertyInfo>();
 
+            var argsPos = 0;
+
             while (args.Count > 0)
             {
-                var arg = args.Dequeue();
+                argsPos += 1;
+
+                var arg = args.First.Value;
+                args.RemoveFirst();
                 var matchedSwitch =
                     switches.SingleOrDefault(sw => sw.Attribute.IsNameMatch(arg, sw.Property.Name, this.Configuration));
-
+                
                 if (matchedSwitch == null)
                 {
-                    throw new UnknownSwitchException(arg);
+                    //try match by pos
+                    matchedSwitch = switches.Select(sw => new
+                        {
+                            Attr = sw.GetOtherAttribute<CommandInlineArgument>(),
+                            Switch = sw
+                        })
+                        .Where(wrapper => wrapper.Attr != null)
+                        .Where(wrap => wrap.Attr.Position == argsPos - 1)
+                        .Select(wr => wr.Switch)
+                        .SingleOrDefault();
+
+                    if (matchedSwitch == null)
+                        throw new UnknownSwitchException(arg);
+
+                    args.AddFirst(arg);
                 }
 
-                usedProperties.Add(matchedSwitch.Property);
+                if (!usedProperties.Add(matchedSwitch.Property))
+                {
+                    throw new DoubleArgumentException(matchedSwitch.Property.Name);
+                }
 
                 var typeParser = this.Configuration.TypeHandler.For(matchedSwitch.Property.PropertyType);
                 if (typeParser == null)
@@ -174,7 +196,8 @@ namespace NCmdArgs
                 var result =
                     typeParser.Parse(new ParserContext(args, matchedSwitch,
                         localArg =>
-                            switches.Any(sw => sw.Attribute.IsNameMatch(localArg, sw.Property.Name, this.Configuration)),
+                            switches.Any(
+                                sw => sw.Attribute.IsNameMatch(localArg, sw.Property.Name, this.Configuration)),
                         this.Configuration));
 
                 matchedSwitch.Property.SetValue(options, result);

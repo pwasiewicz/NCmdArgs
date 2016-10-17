@@ -39,11 +39,11 @@ namespace NCmdArgs.Attributes
             if (this.MatchCase)
             {
                 return propName.Equals(argName, StringComparison.Ordinal) ||
-                       this.ShortName.Equals(argName, StringComparison.Ordinal);
+                       (this.ShortName != null && this.ShortName.Equals(argName, StringComparison.Ordinal));
             }
 
             return propName.Equals(argName, StringComparison.OrdinalIgnoreCase) ||
-                       this.ShortName.Equals(argName, StringComparison.OrdinalIgnoreCase);
+                   (this.ShortName != null && this.ShortName.Equals(argName, StringComparison.OrdinalIgnoreCase));
         }
 
          public bool IsShortAvailable()

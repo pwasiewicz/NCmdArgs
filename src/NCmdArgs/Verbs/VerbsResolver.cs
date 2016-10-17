@@ -7,7 +7,7 @@ namespace NCmdArgs.Verbs
 {
     internal class VerbsResolver
     {
-        public static object FetchVerbOptions(object obj, Queue<string> args, ParserConfiguration configuration, ref string verbsPath)
+        public static object FetchVerbOptions(object obj, LinkedList<string> args, ParserConfiguration configuration, ref string verbsPath)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -16,7 +16,7 @@ namespace NCmdArgs.Verbs
 
             if (args.Count == 0) return obj;
 
-            var firstArg = args.Peek();
+            var firstArg = args.First.Value;
 
             foreach (var prop in PropertyFetcher.GetPropertiesWithAttributes<CommandVerbAttribute>(obj))
             {
@@ -35,8 +35,8 @@ namespace NCmdArgs.Verbs
 
                 if (verbsPath != string.Empty) verbsPath += " ";
 
-                verbsPath += args.Peek();
-                args.Dequeue();
+                verbsPath += args.First.Value;
+                args.RemoveFirst();
                 return FetchVerbOptions(verbOptions, args, configuration, ref verbsPath);
             }
 

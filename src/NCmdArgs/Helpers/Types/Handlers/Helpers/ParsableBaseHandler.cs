@@ -18,7 +18,9 @@ namespace NCmdArgs.Helpers.Types.Handlers.Helpers
         {
             if (!ctx.Arguments.Any()) throw new MissingSwitchArguments(ctx.AttributeHolder.Property.Name);
 
-            var arg = ctx.Arguments.Dequeue();
+            var arg = ctx.Arguments.First.Value;
+            ctx.Arguments.RemoveFirst();
+
             if (string.IsNullOrWhiteSpace(arg))
                 return ctx.AttributeHolder.Attribute.DefaultValue ?? default(T);
 

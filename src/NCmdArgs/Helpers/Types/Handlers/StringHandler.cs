@@ -12,7 +12,9 @@ namespace NCmdArgs.Helpers.Types.Handlers
         {
             if (!ctx.Arguments.Any()) throw new MissingSwitchArguments(ctx.AttributeHolder.Property.Name);
 
-            return ctx.Arguments.Dequeue();
+            var val = ctx.Arguments.First.Value;
+            ctx.Arguments.RemoveFirst();
+            return val;
         }
     }
 }

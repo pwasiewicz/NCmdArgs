@@ -69,5 +69,18 @@ namespace NCmdArgs.Tests
 
             Assert.True(result.Contains("--Hello"));
         }
+
+        [Fact]
+        public void Parse_Position_ValidResult()
+        {
+            var args = new[] { "sampleval", "sampleval2" };
+            var opt = new SimpleStringOptions();
+
+            var p = new CommandLineParser();
+            p.Parse(opt, args);
+
+            Assert.Equal("sampleval", opt.Hello);
+            Assert.Equal("sampleval2", opt.HelloSecond);
+        }
     }
 }

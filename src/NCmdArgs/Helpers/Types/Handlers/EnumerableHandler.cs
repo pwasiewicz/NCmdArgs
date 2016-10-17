@@ -15,7 +15,7 @@ namespace NCmdArgs.Helpers.Types.Handlers
 
             while (ctx.Arguments.Count > 0)
             {
-                var currentElement = ctx.Arguments.Peek();
+                var currentElement = ctx.Arguments.First.Value;
                 if (ctx.IsParameter(currentElement))
                 {
                     break;
