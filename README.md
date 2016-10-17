@@ -25,7 +25,7 @@ You can configure any  argument via passing paremeters to **CommandArgument** at
 
 ```c#
 [CommandArgument(ShortName = "h", Required = true, Description = "Hello test value")]
-        public string Hello { get; set; }
+public string Hello { get; set; }
 ```
 
 ## Collections 
