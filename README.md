@@ -98,3 +98,19 @@ Sample output:
 Program arguments:
    --Hello, -h  Hello test value
 ```
+
+## Positions arguments
+
+You can also base on arguments positions:
+
+```c#
+[CommandArgument]
+[CommandInlineArgument(0)]
+public string Hello { get; set; }
+```
+
+```ps
+> ./myapp hello-arg-value
+```
+
+As you can see above - you do not need to pass arugment name (only position in arguments list).
