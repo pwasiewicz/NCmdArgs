@@ -3,7 +3,7 @@
 
 Simple parser for application arguments. Port of Was.CommandLineArgs.
 
-Available on nuget, for .NET 4.6.2 & .NET Core.
+Available on nuget for .NET 4.6.2 & .NET Core.
 
 ## Basic usage
 
