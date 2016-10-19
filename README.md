@@ -101,7 +101,7 @@ Program arguments:
    --Hello, -h  Hello test value
 ```
 
-## Positions arguments
+## Position of arguments
 
 You can also base on arguments positions:
 
