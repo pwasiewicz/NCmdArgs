@@ -116,3 +116,13 @@ public string Hello { get; set; }
 ```
 
 As you can see above - you do not need to pass arugment name (only position in arguments list).
+
+
+# Release notes
+
+## Version 1.0.4
+* `bool` handler is no expecting value anymore (you can just specify flag `-h` instead of `-h true`)
+* Fixed invalid verb name in usages
+
+## Previous Version
+Not available for now. 
