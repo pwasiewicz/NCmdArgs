@@ -33,11 +33,13 @@ namespace NCmdArgs.Helpers.HelpWriter
 
             var verbsSwitches = verbs
                 .Select(prop => new
-                                {
-                                    Holder = prop,
-                                    ArgBrief =
-                                        prop.Property.Name + " (verb) "
-                                }).ToList();
+                {
+                    Holder = prop,
+                    ArgBrief =
+                    !string.IsNullOrWhiteSpace(prop.Attribute.Name)
+                        ? prop.Attribute.Name
+                        : prop.Property.Name + " (verb) "
+                }).ToList();
 
             var longestSwitch = arguments.Any() ? arguments.Max(p => p.ArgBrief.Length) : -1;
 

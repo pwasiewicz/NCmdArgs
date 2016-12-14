@@ -11,14 +11,11 @@ namespace NCmdArgs.Helpers.Types.Handlers
         {
         }
 
+        protected override bool RequiresArgument => false;
+
         protected override object ParseInternal(string arg)
         {
-            if (arg == "t") return true;
-            if (arg == "f") return false;
-            if (arg == "1") return true;
-            if (arg == "0") return false;
-
-            return base.ParseInternal(arg);
+            return true;
         }
     }
 
@@ -30,14 +27,11 @@ namespace NCmdArgs.Helpers.Types.Handlers
         {
         }
 
+        protected override bool RequiresArgument => false;
+
         protected override object ParseInternal(string arg)
         {
-            if (arg == "t") return true;
-            if (arg == "f") return false;
-            if (arg == "1") return true;
-            if (arg == "0") return false;
-
-            return base.ParseInternal(arg);
+            return true;
         }
     }
 }

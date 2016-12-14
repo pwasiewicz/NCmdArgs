@@ -14,9 +14,13 @@ namespace NCmdArgs.Helpers.Types.Handlers.Helpers
             this.parseFunction = parseFunction;
         }
 
+        protected virtual bool RequiresArgument => true;
+
         public override object Parse(ParserContext ctx)
         {
-            if (!ctx.Arguments.Any()) throw new MissingSwitchArguments(ctx.AttributeHolder.Property.Name);
+            if (RequiresArgument && !ctx.Arguments.Any()) throw new MissingSwitchArguments(ctx.AttributeHolder.Property.Name);
+
+            if (!RequiresArgument) return this.ParseInternal(null);
 
             var arg = ctx.Arguments.First.Value;
             ctx.Arguments.RemoveFirst();

@@ -82,5 +82,17 @@ namespace NCmdArgs.Tests
             Assert.Equal("sampleval", opt.Hello);
             Assert.Equal("sampleval2", opt.HelloSecond);
         }
+
+        [Fact]
+        public void Parse_BoolWithNoArguments_ValidResult()
+        {
+            var args = new[] { "-h" };
+            var opt = new SampleBoolOptions();
+
+            var p = new CommandLineParser();
+            p.Parse(opt, args);
+
+            Assert.True(opt.MyBool);
+        }
     }
 }
