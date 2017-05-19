@@ -11,6 +11,11 @@ namespace NCmdArgs.Attributes
         public string ShortName { get; set; }
 
         /// <summary>
+        /// Short name that starts with one dash. f.e -f
+        /// </summary>
+        public string LongName { get; set; }
+
+        /// <summary>
         /// Default value for parameter.
         /// </summary>
         public object DefaultValue { get; set; }
@@ -36,14 +41,17 @@ namespace NCmdArgs.Attributes
 
             var argName = conf.GetArgFromSwitch(arg);
 
+            StringComparison comparison = StringComparison.OrdinalIgnoreCase;
+
+
             if (this.MatchCase)
             {
-                return propName.Equals(argName, StringComparison.Ordinal) ||
-                       (this.ShortName != null && this.ShortName.Equals(argName, StringComparison.Ordinal));
+                comparison = StringComparison.Ordinal;
             }
 
-            return propName.Equals(argName, StringComparison.OrdinalIgnoreCase) ||
-                   (this.ShortName != null && this.ShortName.Equals(argName, StringComparison.OrdinalIgnoreCase));
+            return (this.LongName != null &&  this.LongName.Equals(argName, comparison))  ||
+                   (this.ShortName != null && this.ShortName.Equals(argName, comparison)) ||
+                   propName.Equals(argName, comparison);
         }
 
          public bool IsShortAvailable()
