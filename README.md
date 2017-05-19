@@ -120,6 +120,9 @@ As you can see above - you do not need to pass arugment name (only position in a
 
 # Release notes
 
+## Version 1.0.4.2
+* Long switch attribute for argument (f.e to override long name that is fetched from property name)
+
 ## Version 1.0.4.1
 * Added .NET Framework 4.5.1 & 4.5.2 target
 
