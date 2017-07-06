@@ -214,7 +214,8 @@ namespace NCmdArgs
             foreach (var prop in missedProperties)
             {
                 var defaultValue = prop.Attribute.DefaultValue;
-                prop.Property.SetValue(options, defaultValue);
+                if (defaultValue != null)
+                    prop.Property.SetValue(options, defaultValue);
             }
         }
     }

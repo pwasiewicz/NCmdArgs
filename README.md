@@ -120,6 +120,9 @@ As you can see above - you do not need to pass arugment name (only position in a
 
 # Release notes
 
+## Version 1.0.4.3
+* Default property for property can be set inside options class (f.e in ctor)
+
 ## Version 1.0.4.2
 * Long switch attribute for argument (f.e to override long name that is fetched from property name)
 

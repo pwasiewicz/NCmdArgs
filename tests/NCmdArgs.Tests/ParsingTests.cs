@@ -94,5 +94,30 @@ namespace NCmdArgs.Tests
 
             Assert.True(opt.MyBool);
         }
+
+
+        [Fact]
+        public void Parse_PropWithPrivateSet_ValidResult()
+        {
+            var args = new[] { "--prop", "hello" };
+            var opt = new PrivateStringOptions();
+
+            var p = new CommandLineParser();
+            p.Parse(opt, args);
+
+            Assert.Equal("hello", opt.Prop);
+        }
+
+        [Fact]
+        public void Parse_DefaultValueSetinsideClass_ValidResult()
+        {
+            var args = new string[] { };
+            var opt = new PrivateStringOptions();
+
+            var p = new CommandLineParser();
+            p.Parse(opt, args);
+
+            Assert.Equal("auto-field", opt.Prop);
+        }
     }
 }
