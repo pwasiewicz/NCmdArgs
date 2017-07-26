@@ -46,7 +46,7 @@ namespace NCmdArgs
             }
         }
 
-        public string CommandVerbSeparator { get; set; }
+        public string CommandCamelCaseNameSeparator { get; set; }
 
         public string ShortSwitch
         {
