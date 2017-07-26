@@ -45,10 +45,10 @@ namespace NCmdArgs.Attributes
 
             var comparison = StringComparison.OrdinalIgnoreCase;
 
-            if (!string.IsNullOrEmpty(conf.CommandVerbSeparator))
+            if (!string.IsNullOrEmpty(conf.CommandCamelCaseNameSeparator))
             {
                 var verbs = Regex.Split(propName, @"(?<!^)(?=[A-Z])");
-                propName = string.Join(conf.CommandVerbSeparator, verbs.Select(v => v.ToLowerInvariant()));
+                propName = string.Join(conf.CommandCamelCaseNameSeparator, verbs.Select(v => v.ToLowerInvariant()));
             }
 
 

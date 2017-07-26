@@ -127,7 +127,7 @@ namespace NCmdArgs.Tests
             var opt = new CommandVerbSeparatorOption();
 
             var p = new CommandLineParser();
-            p.Configuration.CommandVerbSeparator = "-";
+            p.Configuration.CommandCamelCaseNameSeparator = "-";
             p.Parse(opt, args);
 
             Assert.Equal("hello", opt.PropTest);
