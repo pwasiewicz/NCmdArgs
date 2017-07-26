@@ -15,8 +15,8 @@ namespace NCmdArgs
         private readonly TypeHandlersCollection typeHandlers;
         private Func<Type, object> instanceFactory;
 
-        private LinkedList<OnVerbDelegate> onVerbCallbacks;
-        private Dictionary<Type, LinkedList<VerbCallback>> concreteVerbCallbacks;
+        private readonly LinkedList<OnVerbDelegate> onVerbCallbacks;
+        private readonly Dictionary<Type, LinkedList<VerbCallback>> concreteVerbCallbacks;
 
         public ParserConfiguration()
         {
@@ -37,7 +37,7 @@ namespace NCmdArgs
 
         public Func<Type, object> InstanceFactory
         {
-            get { return this.instanceFactory; }
+            get => this.instanceFactory;
             set
             {
                 if (value == null) throw new ArgumentNullException("value");
@@ -50,7 +50,7 @@ namespace NCmdArgs
 
         public string ShortSwitch
         {
-            get { return this.shortSwitch; }
+            get => this.shortSwitch;
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
@@ -65,7 +65,7 @@ namespace NCmdArgs
 
         public string LongSwitch
         {
-            get { return this.longSwitch; }
+            get => this.longSwitch;
             set
             {
                 if (string.IsNullOrWhiteSpace(value))

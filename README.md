@@ -120,6 +120,9 @@ As you can see above - you do not need to pass arugment name (only position in a
 
 # Release notes
 
+## Version 1.0.4.4
+* Command name can be implicity splitted by specified char. For example, property MyOption can be resolved as my-option.
+
 ## Version 1.0.4.3
 * Default property for property can be set inside options class (f.e in ctor)
 

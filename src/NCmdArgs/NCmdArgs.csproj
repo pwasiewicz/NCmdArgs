@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <VersionPrefix>1.0.4.3</VersionPrefix>
-    <TargetFrameworks>net46;net461;net452;net451;netstandard1.6</TargetFrameworks>
+    <TargetFrameworks>net46;net461;net452;net451;netstandard1.5</TargetFrameworks>
     <AssemblyName>NCmdArgs</AssemblyName>
     <PackageId>NCmdArgs</PackageId>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <NetStandardImplicitPackageVersion>1.5.*</NetStandardImplicitPackageVersion>
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
@@ -14,6 +14,7 @@
     <PackageProjectUrl>https://github.com/pwasiewicz/NCmdArgs</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/pwasiewicz/Was.CommandLineArgs/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/pwasiewicz/NCmdArgs.git</RepositoryUrl>
+    <Description>Parser for command line arguemnts</Description>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
     <Reference Include="System" />
@@ -31,7 +32,4 @@
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <Target Name="PostcompileScript" AfterTargets="Build" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
-    <Exec Command="dotnet pack --no-build --configuration $(Configuration)" />
-  </Target>
 </Project>
