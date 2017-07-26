@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace NCmdArgs.Attributes
 {
@@ -41,7 +43,13 @@ namespace NCmdArgs.Attributes
 
             var argName = conf.GetArgFromSwitch(arg);
 
-            StringComparison comparison = StringComparison.OrdinalIgnoreCase;
+            var comparison = StringComparison.OrdinalIgnoreCase;
+
+            if (!string.IsNullOrEmpty(conf.CommandVerbSeparator))
+            {
+                var verbs = Regex.Split(propName, @"(?<!^)(?=[A-Z])");
+                propName = string.Join(conf.CommandVerbSeparator, verbs.Select(v => v.ToLowerInvariant()));
+            }
 
 
             if (this.MatchCase)
@@ -49,14 +57,14 @@ namespace NCmdArgs.Attributes
                 comparison = StringComparison.Ordinal;
             }
 
-            return (this.LongName != null &&  this.LongName.Equals(argName, comparison))  ||
-                   (this.ShortName != null && this.ShortName.Equals(argName, comparison)) ||
+            return this.LongName != null && this.LongName.Equals(argName, comparison) ||
+                   this.ShortName != null && this.ShortName.Equals(argName, comparison) ||
                    propName.Equals(argName, comparison);
         }
 
-         public bool IsShortAvailable()
-         {
-             return !string.IsNullOrWhiteSpace(this.ShortName);
-         }
+        public bool IsShortAvailable()
+        {
+            return !string.IsNullOrWhiteSpace(this.ShortName);
+        }
     }
 }

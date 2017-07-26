@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NCmdArgs.Helpers.Types;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using NCmdArgs.Helpers.Types;
 
 namespace NCmdArgs
 {
@@ -46,6 +46,8 @@ namespace NCmdArgs
             }
         }
 
+        public string CommandVerbSeparator { get; set; }
+
         public string ShortSwitch
         {
             get { return this.shortSwitch; }
@@ -87,12 +89,12 @@ namespace NCmdArgs
 
         public ParserConfiguration WhenVerb<T>(Action<T> callback)
         {
-            if (!this.concreteVerbCallbacks.ContainsKey(typeof (T)))
+            if (!this.concreteVerbCallbacks.ContainsKey(typeof(T)))
             {
-                this.concreteVerbCallbacks.Add(typeof (T), new LinkedList<VerbCallback>());
+                this.concreteVerbCallbacks.Add(typeof(T), new LinkedList<VerbCallback>());
             }
 
-            this.concreteVerbCallbacks[typeof (T)].AddLast(new VerbCallback<T>(callback));
+            this.concreteVerbCallbacks[typeof(T)].AddLast(new VerbCallback<T>(callback));
 
             return this;
         }
@@ -153,7 +155,7 @@ namespace NCmdArgs
             public abstract void Call(object value);
         }
 
-        private class VerbCallback<T>  : VerbCallback
+        private class VerbCallback<T> : VerbCallback
         {
             private readonly Action<T> callback;
 
@@ -164,7 +166,7 @@ namespace NCmdArgs
 
             public override void Call(object value)
             {
-                this.callback((T) value);
+                this.callback((T)value);
             }
         }
     }

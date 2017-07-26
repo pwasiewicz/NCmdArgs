@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using NCmdArgs.Tests.Options;
+using System.IO;
 using System.Linq;
-using NCmdArgs.Tests.Options;
 using Xunit;
 
 namespace NCmdArgs.Tests
@@ -81,5 +81,6 @@ namespace NCmdArgs.Tests
 
             Assert.True(result.Contains("--Hello"));
         }
+
     }
 }

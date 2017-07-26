@@ -9,6 +9,11 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <Version>1.0.4.4</Version>
+    <Authors>Patryk Wąsiewicz</Authors>
+    <PackageProjectUrl>https://github.com/pwasiewicz/NCmdArgs</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/pwasiewicz/Was.CommandLineArgs/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/pwasiewicz/NCmdArgs.git</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
     <Reference Include="System" />

@@ -1,6 +1,6 @@
-﻿using System.IO;
-using NCmdArgs.Exceptions;
+﻿using NCmdArgs.Exceptions;
 using NCmdArgs.Tests.Options;
+using System.IO;
 using Xunit;
 
 namespace NCmdArgs.Tests
@@ -10,7 +10,7 @@ namespace NCmdArgs.Tests
         [Fact]
         public void Parse_SimpleStringNoRequiredValueSupplied_ReturnsValueFromCommandLine()
         {
-            var args = new[] {   "--hello", "sampleval" };
+            var args = new[] { "--hello", "sampleval" };
             var opt = new SimpleStringOptions();
 
             var p = new CommandLineParser();
@@ -118,6 +118,19 @@ namespace NCmdArgs.Tests
             p.Parse(opt, args);
 
             Assert.Equal("auto-field", opt.Prop);
+        }
+
+        [Fact]
+        public void Parse_VerbSepartor_Used()
+        {
+            var args = new string[] { "--prop-test", "hello" };
+            var opt = new CommandVerbSeparatorOption();
+
+            var p = new CommandLineParser();
+            p.Configuration.CommandVerbSeparator = "-";
+            p.Parse(opt, args);
+
+            Assert.Equal("hello", opt.PropTest);
         }
     }
 }
