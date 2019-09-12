@@ -1,21 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <VersionPrefix>1.0.4.3</VersionPrefix>
-    <TargetFrameworks>net46;net461;net452;net451;netstandard1.5</TargetFrameworks>
+    <VersionPrefix>1.0.4.6</VersionPrefix>
+    <TargetFrameworks>net48;net472;net46;net461;net452;net451;netstandard2.0</TargetFrameworks>
     <AssemblyName>NCmdArgs</AssemblyName>
     <PackageId>NCmdArgs</PackageId>
-    <NetStandardImplicitPackageVersion>1.5.*</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Version>1.0.4.5</Version>
+    <Version>1.0.4.6</Version>
     <Authors>Patryk Wąsiewicz</Authors>
     <PackageProjectUrl>https://github.com/pwasiewicz/NCmdArgs</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/pwasiewicz/Was.CommandLineArgs/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/pwasiewicz/NCmdArgs.git</RepositoryUrl>
     <Description>Parser for command line arguemnts</Description>
   </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net47' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />

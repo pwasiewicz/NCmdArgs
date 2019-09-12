@@ -35,6 +35,8 @@ namespace NCmdArgs
 
         public TextWriter ErrorOutput { get; set; }
 
+        public bool InteractiveMode { get; set; }
+
         public Func<Type, object> InstanceFactory
         {
             get => this.instanceFactory;
