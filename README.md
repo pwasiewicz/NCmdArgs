@@ -3,7 +3,7 @@
 
 Simple parser for application arguments. Port of Was.CommandLineArgs.
 
-Available on nuget for .NET 4.6.2 & .NET Core.
+Available on nuget for .NET, .NET Standard & .NET Core.
 
 ## Basic usage
 
@@ -120,8 +120,13 @@ As you can see above - you do not need to pass arugment name (only position in a
 
 # Release notes
 
+## Version 1.0.4.7
+* Fixed Parse - returns false instead of throwing exception for some cases
+* Fixed verb parssing - callback for specific verb was called event is parsing arguments failed
+* Usage writer prints verbs options also
+
 ## Version 1.0.4.4
-* Command name can be implicity splitted by specified char. For example, property MyOption can be resolved as my-option.
+* Command name can be implicity splitted by specified char. For example, property MyOption can be resolved as my-option
 
 ## Version 1.0.4.3
 * Default property for property can be set inside options class (f.e in ctor)

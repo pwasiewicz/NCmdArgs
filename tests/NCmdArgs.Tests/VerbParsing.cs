@@ -35,7 +35,7 @@ namespace NCmdArgs.Tests
         }
 
         [Fact]
-        public void Parse_MyVerb_PropertVerCallbackIsCalled()
+        public void Parse_MyVerb_ProperyVerbCallbackIsCalled()
         {
             var args = new[] { "myverb", "--hello", "test" };
             var opt = new VerbOptions();
@@ -48,6 +48,34 @@ namespace NCmdArgs.Tests
             p.Parse(opt, args);
 
             Assert.True(called);
+        }
+
+        [Fact]
+        public void Parse_WhenError_ProperyVerCallbackIsNotCalled()
+        {
+            var args = new[] { "myverb" };
+            var opt = new VerbWithRequiredOptions();
+
+            var called = false;
+
+            var p = new CommandLineParser();
+            p.Configuration.WhenVerb<VerbWithRequiredCommand>(command => called = true);
+
+            var result = p.Parse(opt, args);
+
+            Assert.False(result);
+            Assert.False(called);
+        }
+
+        [Fact]
+        public void Parse_MyVerb_Usage()
+        {
+            var parser = new CommandLineParser();
+
+            var writer = new StringWriter();
+            parser.Usage<VerbOptions>(writer);
+
+            var _ = writer.ToString();
         }
 
         [Fact]

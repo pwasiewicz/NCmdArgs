@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using NCmdArgs.Attributes;
+﻿using NCmdArgs.Attributes;
 using NCmdArgs.Exceptions;
 using NCmdArgs.Helpers.HelpWriter;
 using NCmdArgs.Helpers.Properties;
 using NCmdArgs.Helpers.Types;
 using NCmdArgs.Verbs;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace NCmdArgs
 {
     public class CommandLineParser
     {
+        private static readonly Regex CanBeVerbRegex = new Regex("^\\w+$", RegexOptions.Compiled);
+
         public CommandLineParser()
         {
             this.Configuration = new ParserConfiguration();
@@ -66,11 +68,6 @@ namespace NCmdArgs
         }
 
 
-        private bool CouldBeVerb(string term)
-        {
-            var r = new Regex("^\\w+$");
-            return r.IsMatch(term);
-        }
 
         public T Parse<T>(string[] args)
             where T : new()
@@ -103,17 +100,13 @@ namespace NCmdArgs
                 this.LastVerb = null;
             }
 
-            try
+            var result = this.ParseNoVerb(newOptions, argsQueue);
+            if (result && isVerb)
             {
-                return this.ParseNoVerb(newOptions, argsQueue);
+                Configuration.VerbParsed(newOptions);
             }
-            finally
-            {
-                if (isVerb)
-                {
-                    this.Configuration.VerbParsed(newOptions);
-                }
-            }
+
+            return result;
         }
 
         public void Usage<T>(TextWriter writer)
@@ -128,22 +121,24 @@ namespace NCmdArgs
         {
             try
             {
-                this.ParseNoVerbInternal(options, args);
+                ParseNoVerbInternal(options, args);
                 return true;
             }
             catch (ParserException)
             {
-                if (this.Configuration.ErrorOutput != null)
+                if (Configuration.ErrorOutput == null)
                 {
-                    var hlp = new UsageWriter(this.Configuration.ErrorOutput);
-                    hlp.Write(options, this.Configuration);
-
                     return false;
                 }
 
-                throw;
+                var hlp = new UsageWriter(this.Configuration.ErrorOutput);
+                hlp.Write(options, this.Configuration);
+                return false;
             }
-        }        
+        }
+
+        private static bool CouldBeVerb(string term)
+            => CanBeVerbRegex.IsMatch(term);
 
         private void ParseNoVerbInternal(object options, LinkedList<string> args)
         {

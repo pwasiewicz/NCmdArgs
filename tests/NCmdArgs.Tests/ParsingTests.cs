@@ -51,7 +51,7 @@ namespace NCmdArgs.Tests
 
             var p = new CommandLineParser();
 
-            Assert.Throws<MissingArgumentException>(() => p.Parse(opt, args));
+            Assert.False(p.Parse(opt, args));
         }
 
         [Fact]

@@ -1,18 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <VersionPrefix>1.0.4.6</VersionPrefix>
-    <TargetFrameworks>net48;net472;net46;net461;net452;net451;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net48;net472;net46;net461;net452;net451;netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
     <AssemblyName>NCmdArgs</AssemblyName>
     <PackageId>NCmdArgs</PackageId>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Version>1.0.4.6</Version>
+    <Version>1.0.4.7</Version>
     <Authors>Patryk Wąsiewicz</Authors>
     <PackageProjectUrl>https://github.com/pwasiewicz/NCmdArgs</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/pwasiewicz/Was.CommandLineArgs/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/pwasiewicz/NCmdArgs.git</RepositoryUrl>
     <Description>Parser for command line arguemnts</Description>
+    <AssemblyVersion>1.0.4.7</AssemblyVersion>
+    <FileVersion>1.0.4.7</FileVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
     <Reference Include="System" />
